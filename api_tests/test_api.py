@@ -34,7 +34,7 @@ def test_api_put():
 
 def test_api_delete():
     resp = delete_api()
-    assert (resp.status_code == test_data.STATUS_DELETE_204), "Status is not 204"
+    assert (resp.status_code == test_data.STATUS_DELETE_200), "Status is not 204"
 
 
 
