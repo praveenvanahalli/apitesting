@@ -1,16 +1,8 @@
-import pytest
-from base1.conftest import get_api, post_api, put_api, delete_api
 from config.config import test_data
-import allure
 
-
-# @pytest.mark.get
-# @pytest.mark.usefixtures("get_api")
-
-
-
-def test_api_get():
-    resp = get_api()
+'''Validate GET API'''
+def test_api_get(get_api):
+    resp = get_api
     resp_body = resp.json()
     assert resp.status_code == test_data.STATUS_OK_200
     assert resp_body["data"]["id"] == 2
@@ -20,21 +12,38 @@ def test_api_get():
     assert resp_body["ad"]["url"] == "http://statuscode.org/"
 
 
-def test_api_post():
-    resp = post_api()
+'''Validate POST API'''
+
+
+def test_api_post(post_api):
+    resp = post_api
     resp_body = resp.json()
     assert resp.status_code == test_data.STATUS_CREATED_201
     assert resp_body["name"] == "morpheus"
 
-def test_api_put():
-    resp = put_api()
+
+'''Validate PUT API'''
+
+
+def test_api_put(put_api):
+    resp = put_api
     resp_body = resp.json()
     assert resp.status_code == test_data.STATUS_OK_200
     assert resp_body["name"] == "praveen"
 
-def test_api_delete():
-    resp = delete_api()
-    assert (resp.status_code == test_data.STATUS_DELETE_200), "Status is not 204"
+
+'''Validate DELETE API'''
 
 
+def test_api_delete(delete_api):
+    resp = delete_api
+    assert (resp.status_code == test_data.STATUS_DELETE_204), "Status is not 204"
+
+
+'''Validate GET not found user API'''
+
+
+def test_api_get_not_found(get_not_found_user):
+    resp = get_not_found_user
+    assert resp.status_code == test_data.STATUS_NOT_FOUND_404
 

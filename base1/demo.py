@@ -1,8 +1,5 @@
-import json
-
-import pytest
 import requests
-from base1.conftest import get_api, delete_api
+from conftest import get_api
 from config.config import test_data
 
 SERVICE_URL = "http://reqres.in"
